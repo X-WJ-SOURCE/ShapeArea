@@ -1,0 +1,32 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	//fixed + setprecision(n)=保留n位小数 
+	cout << fixed << setprecision(2) <<3.14159 <<endl;//3.14
+	cout << fixed << setprecision(3) <<3.14159 <<endl;//3.145
+
+	
+	//对齐
+	//1.设置输出宽度
+	cout << setw(5) << 123 <<endl;//  123（前面补两空格） 
+	//setw(n)只对下一个输出有效
+	//默认右对齐 
+	
+	//2.前面补0
+	cout << setfill('0') << setw(2) << 5 <<endl;
+	cout << setfill('0') << setw(3) << 8 <<endl;  
+	//口决 setfill('0')+setw(n)=占n位，不够前面补0
+	
+	
+	//3.左对齐/右对齐
+	cout << left << setw(3) << 6 <<endl;
+	cout << right << setw(3) << 7 <<endl; 
+	
+	cout << fixed << setprecision(2) << setw(5) << 1.2 <<endl;
+	//保留2位小数 宽度为5 
+	
+	
+	
+}
