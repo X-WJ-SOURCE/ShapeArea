@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+class id_name//构造对象 
+{
+	public:
+		//构造函数 
+		id_name()
+		{
+			id=0;
+			cout << "默认构造函数" <<endl;
+		}
+		id_name(int a)
+		{
+			id=a;
+			cout << "有参构造函数" <<endl;
+		}
+		id_name(const id_name &Id)
+		{
+			id=Id.id;
+			cout << "拷贝构造函数" <<endl;
+		}
+		void func()//成员方法
+		{
+			cout << "第二次实验" <<endl;
+		}
+		~id_name()//析构函数
+		{
+			cout << "析构函数调用" << "id=" << id << "被销毁" << endl;
+		}
+	private:
+		int id;
+}; 
+
+id_name id1;//全局对象，程序开始时创建，结束时销毁
+int main()
+{
+	cout << "进入main" <<endl;
+	id_name id2;
+	id2.func();
+	id_name id3(10);
+	id_name id4(id3);
+	cout << "main 结束" <<endl;
+}
