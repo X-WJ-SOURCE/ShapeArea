@@ -1,0 +1,52 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class Animal
+{
+	public:
+		Animal()
+		{
+			cout << "Animal构造函数调用" <<endl;
+		}
+		virtual void speak()=0;
+	    // virtual ~Animal()//利用虚析构函数实现父类指针删除子类对象时，能够调用子类的析构函数，释放子类对象的资源
+	    // {
+	    // 	cout << "Animal析构函数调用" <<endl;
+	    // }
+		virtual ~Animal()=0;//纯虚析构函数必须要有函数体，虽然是纯虚函数，但它也是有实现的，因为在子类对象销毁时，父类的析构函数也会被调用，所以必须要有函数体，否则会报错
+};
+class cat : public Animal
+{
+	public:
+		cat(string name)
+		{
+			cout << "cat构造函数调用" <<endl;
+		    m_Name = new string(name);
+	} 
+	void speak()
+	{
+		cout << *m_Name<< "小猫在叫" <<endl;
+	}
+	~cat()
+	{
+		cout << "cat析构函数调用" <<endl; 
+		delete m_Name;
+		m_Name = NULL;
+	}
+	private:
+		string *m_Name;
+};
+Animal::~Animal()
+{
+	cout << "Animal纯虚析构函数调用" <<endl;//有了纯虚析构就属于抽象类
+}
+void text()
+{
+    Animal *animal = new cat("Tom");
+    animal->speak();
+    delete animal;
+}
+int main()
+{
+	text();
+}
